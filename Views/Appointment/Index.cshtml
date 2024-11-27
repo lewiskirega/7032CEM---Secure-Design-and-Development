@@ -1,0 +1,26 @@
+@model IEnumerable<JKLHealthcareSystem.Models.Appointment>
+
+<h2>Appointments</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Caregiver</th>
+            <th>Appointment Date</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <!-- Use the null-conditional operator to safely access Patient and Caregiver properties -->
+                <td>@appointment.Patient?.Name ?? "No Patient Assigned"</td>  
+                <td>@appointment.Caregiver?.Name ?? "No Caregiver Assigned"</td>  
+                <td>@appointment.AppointmentDate</td>
+                <td>@appointment.Notes ?? "No notes available"</td> <!-- Use null-coalescing operator for Notes -->
+            </tr>
+        }
+    </tbody>
+</table>

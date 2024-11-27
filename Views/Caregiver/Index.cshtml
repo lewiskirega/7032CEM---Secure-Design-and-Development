@@ -1,0 +1,34 @@
+@model IEnumerable<JKLHealthcareSystem.Models.Caregiver>
+
+@{
+    ViewData["Title"] = "Caregivers";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a href="@Url.Action("Assign", "Caregiver")" class="btn btn-primary">Assign Caregiver</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Availability</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var caregiver in Model)
+        {
+            <tr>
+                <td>@caregiver.Name</td>
+                <td>@(caregiver.Availability ? "Available" : "Not Available")</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Caregiver", new { id = caregiver.Id })" class="btn btn-warning">Edit</a> |
+                    <a href="@Url.Action("Delete", "Caregiver", new { id = caregiver.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

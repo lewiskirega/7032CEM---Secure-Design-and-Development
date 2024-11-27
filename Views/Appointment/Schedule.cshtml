@@ -1,0 +1,84 @@
+@model JKLHealthcareSystem.Models.Appointment
+
+@{
+    ViewData["Title"] = "Schedule Appointment";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Schedule" method="post">
+    <div class="form-group">
+        <label for="PatientId">Patient</label>
+        <select asp-for="PatientId" class="form-control">
+            <option value="">Select a Patient</option>
+            @if (ViewData["Patients"] != null)
+            {
+                foreach (var patient in ViewData["Patients"] as List<JKLHealthcareSystem.Models.Patient>)
+                {
+                    <!-- Safely check if patient is not null before accessing Name -->
+                    @if (patient != null && !string.IsNullOrEmpty(patient.Name))
+                    {
+                        <option value="@patient.Id">@patient.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@patient?.Id">No Patient Available</option>
+                    }
+                }
+            }
+            else
+            {
+                <option>No Patients Available</option>
+            }
+        </select>
+        <span asp-validation-for="PatientId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="CaregiverId">Caregiver</label>
+        <select asp-for="CaregiverId" class="form-control">
+            <option value="">Select a Caregiver</option>
+            @if (ViewData["Caregivers"] != null)
+            {
+                foreach (var caregiver in ViewData["Caregivers"] as List<JKLHealthcareSystem.Models.Caregiver>)
+                {
+                    <!-- Safely check if caregiver is not null before accessing Name -->
+                    @if (caregiver != null && !string.IsNullOrEmpty(caregiver.Name))
+                    {
+                        <option value="@caregiver.Id">@caregiver.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@caregiver?.Id">No Caregiver Available</option>
+                    }
+                }
+            }
+            else
+            {
+                <option>No Caregivers Available</option>
+            }
+        </select>
+        <span asp-validation-for="CaregiverId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AppointmentDate" class="control-label"></label>
+        <input asp-for="AppointmentDate" class="form-control" type="datetime-local" />
+        <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notes" class="control-label"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+        <a href="@Url.Action("Index", "Appointment")" class="btn btn-secondary">Back to Appointments</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

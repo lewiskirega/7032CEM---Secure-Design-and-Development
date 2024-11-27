@@ -1,0 +1,168 @@
+/* General Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;  /* Light background color */
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #343a40;  /* Dark text for headers */
+}
+
+/* Container Styles */
+.container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #ffffff;  /* White background for navbar */
+  border-bottom: 1px solid #ddd;  /* Light border for separation */
+}
+
+.navbar .navbar-brand {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-size: 1rem;
+  color: #007bff;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: #0056b3;  /* Darker shade on hover */
+}
+
+/* Main Content Area */
+main {
+  padding-top: 20px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+footer a {
+  color: #007bff;
+}
+
+footer a:hover {
+  color: #0056b3;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+table th, table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #007bff;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Button Styles */
+.btn {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Form Styles */
+form .form-group {
+  margin-bottom: 20px;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Validation Error Styles */
+.text-danger {
+  color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+      padding-left: 10px;
+      padding-right: 10px;
+  }
+
+  .navbar .navbar-collapse {
+      justify-content: flex-end;
+  }
+
+  .navbar-nav {
+      margin-top: 10px;
+  }
+
+  table th, table td {
+      padding: 8px;
+  }
+
+  .btn {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+}

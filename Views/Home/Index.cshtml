@@ -1,0 +1,61 @@
+﻿@model IEnumerable<JKLHealthcareSystem.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">Welcome to the Healthcare System</h1>
+            <p class="lead">Manage appointments, caregivers, and patients easily.</p>
+            <div class="mt-4">
+                <!-- Navigation Links -->
+                <a href="@Url.Action("Index", "Patient")" class="btn btn-info btn-lg m-2">View Patients</a>
+                <a href="@Url.Action("Index", "Caregiver")" class="btn btn-info btn-lg m-2">View Caregivers</a>
+                <a href="@Url.Action("Index", "Appointment")" class="btn btn-info btn-lg m-2">View Appointments</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="text-center">Upcoming Appointments</h2>
+            @if (Model != null && Model.Any())
+            {
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Caregiver</th>
+                            <th>Appointment Date</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var appointment in Model)
+                        {
+                            <tr>
+                                <td>@appointment.Patient?.Name ?? "No Patient Assigned"</td>
+                                <td>@appointment.Caregiver?.Name ?? "No Caregiver Assigned"</td>
+                                <td>@appointment.AppointmentDate.ToString("g")</td>
+                                <td>@appointment.Notes ?? "No notes available"</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    No upcoming appointments.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer mt-5 text-center py-4 bg-dark text-white">
+    <p>&copy; 2024 JKL Healthcare System | <a href="@Url.Action("Privacy", "Home")" class="text-white">Privacy Policy</a></p>
+</div>

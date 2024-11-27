@@ -1,0 +1,60 @@
+@model JKLHealthcareSystem.Models.Assignment
+
+@{
+    ViewData["Title"] = "Assign Caregiver to Patient";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Assign" method="post">
+    <div class="form-group">
+        <label for="PatientId">Patient</label>
+        <select asp-for="PatientId" class="form-control">
+            <option value="">Select a Patient</option>
+            @if (ViewData["Patients"] != null && ViewData["Patients"] is List<JKLHealthcareSystem.Models.Patient> patients)
+            {
+                foreach (var patient in patients)
+                {
+                    @if (patient != null) {
+                        <option value="@patient.Id">@patient.Name</option>  <!-- Ensure patient is not null -->
+                    }
+                }
+            }
+            else
+            {
+                <option>No Patients Available</option>
+            }
+        </select>
+        <span asp-validation-for="PatientId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="CaregiverId">Caregiver</label>
+        <select asp-for="CaregiverId" class="form-control">
+            <option value="">Select a Caregiver</option>
+            @if (ViewData["Caregivers"] != null && ViewData["Caregivers"] is List<JKLHealthcareSystem.Models.Caregiver> caregivers)
+            {
+                foreach (var caregiver in caregivers)
+                {
+                    @if (caregiver != null) {
+                        <option value="@caregiver.Id">@caregiver.Name</option>  <!-- Ensure caregiver is not null -->
+                    }
+                }
+            }
+            else
+            {
+                <option>No Caregivers Available</option>
+            }
+        </select>
+        <span asp-validation-for="CaregiverId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Assign Caregiver</button>
+        <a href="@Url.Action("Index", "Caregiver")" class="btn btn-secondary">Back to Caregivers</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
