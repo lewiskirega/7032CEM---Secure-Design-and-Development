@@ -26,12 +26,12 @@
    dotnet restore
 
 2. **Build the project:**
+   ```
+      dotnet build
 
-   Co
-   dotnet build
-bash
 3. **Run the application:**
 
-   Start 
+   Start
+   ```
    dotnet run
-bash
+
